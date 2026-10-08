@@ -8,7 +8,7 @@ import generateFilterCondition from "@/utils/generateFilterCondition";
 const users: User[] = [
     {
         id: 1,
-        user_name: "john_doe",
+        username: "john_doe",
         password: "password123",
         role: "admin",
         first_name: "John",
@@ -17,7 +17,7 @@ const users: User[] = [
     },
     {
         id: 2,
-        user_name: "jane_doe",
+        username: "jane_doe",
         password: "password456",
         role: "user",
         first_name: "Jane",

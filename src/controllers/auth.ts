@@ -4,12 +4,12 @@ import UsersModel from "@/models/Users";
 
 export const login = (req: Request, res: Response) => {
     try {
-        const { user_name, password } = req.body as LoginDTO;
+        const { username, password } = req.body as LoginDTO;
 
         const user = UsersModel.search({
             filters: {
-                user_name: {
-                    value: user_name,
+                username: {
+                    value: username,
                     operator: "eq"
                 },
             }
@@ -33,7 +33,7 @@ export const login = (req: Request, res: Response) => {
 
         console.log("🌴 Login controller accessed: ", req.body);
 
-        const { user_name: userNameOfUser, password: userPassword, ...restOfUserData } = user;
+        const { username: userNameOfUser, password: userPassword, ...restOfUserData } = user;
 
         res.send({
             message: "✅ Login successful",
