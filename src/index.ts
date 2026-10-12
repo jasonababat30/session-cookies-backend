@@ -1,17 +1,26 @@
-require("dotenv").config();
-
 import express from "express";
 import cors from "cors";
 import authRouter from "@/routes/auth";
+import session from 'express-session';
+import "dotenv/config";
 
 const app = express();
 const port = process.env.PORT;
 
+// MIDDLEWARES
 app.use(express.urlencoded({
     extended: true
 }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: process.env.WEB_URL!,
+    credentials: true
+}));
+app.use(session({
+    secret: process.env.SESSION_SECRET!,
+    resave: false,
+    saveUninitialized: false,
+}))
 
 app.get("/", (req, res) => {
     res.send("Hello World SESSION COOKIES BACKEND");
