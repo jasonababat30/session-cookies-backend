@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import authRouter from "@/routes/auth";
 import session from 'express-session';
+import "@/utils/verify-env-vars";
 import "dotenv/config";
 
 const app = express();
