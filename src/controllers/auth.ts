@@ -35,6 +35,8 @@ export const login = (req: Request, res: Response) => {
 
         const { username: userNameOfUser, password: userPassword, ...restOfUserData } = user;
 
+        req.session.user = restOfUserData;
+
         res.send({
             message: "✅ Login successful",
             data: restOfUserData
