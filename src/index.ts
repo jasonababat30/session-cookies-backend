@@ -1,9 +1,11 @@
 import express from "express";
 import cors from "cors";
-import authRouter from "@/routes/auth";
 import session from 'express-session';
 import "@/utils/verify-env-vars";
 import "dotenv/config";
+import authRouter from "@/routes/auth";
+import userRouter from "@/routes/user";
+import isUserLoggedIn from '@/middlewares/isUserLoggedIn';
 
 const app = express();
 const port = process.env.PORT;
@@ -36,6 +38,7 @@ app.get("/data", (req, res) => {
 
 // ROUTES
 app.use("/auth", authRouter);
+app.use("/user", isUserLoggedIn, userRouter);
 
 app.listen(port, () => {
     console.log(`🧣 Server is running at port ${port}`);
