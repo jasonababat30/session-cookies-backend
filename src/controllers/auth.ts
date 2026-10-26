@@ -53,3 +53,33 @@ export const login = (req: Request, res: Response) => {
             })
     }
 }
+
+export const logout = (req: Request, res: Response) => {
+    try {
+        req.session.destroy((error) => {
+            if (error) {
+                throw {
+                    error,
+                    message: "Could not logout. Please try again"
+                }
+            }
+        });
+
+        res.clearCookie('connect.sid');
+
+        console.log("🌴 Logout successful");
+
+        res.send({
+            message: "✅ Logout successful"
+        });
+    } catch (error) {
+        const err = error as ErrorExtended;
+        console.error("❌ Error @ logout controller: ", error);
+        res
+            .status(err.statusCode || 500)
+            .send({
+                message: err.message || "Internal Server Error",
+                error: err
+            })
+    }
+}
